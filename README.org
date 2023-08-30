@@ -1,0 +1,32 @@
+* Nyxt on Flathub
+
+[[https://flathub.org/][Flathub]] is a centralized place for building and hosting [[http://flatpak.org/][Flatpak]]s.
+
+** For Users
+
+For an installation guide, please visit
+https://flathub.org/apps/engineer.atlas.Nyxt.
+
+To update through Flathub, use the following command:
+
+#+begin_src shell
+flatpak update --user flathub engineer.atlas.Nyxt
+#+end_src
+
+** For Developers
+
+To test locally, clone the repository and follow the instruction below:
+
+#+begin_src shell
+make flatpak-build
+make flatpak-run
+#+end_src
+
+*** Update
+
+To push up a newer version of Nyxt to Flathub:
+
+- Update versions by editing the [[file:engineer.atlas.Nyxt.yaml][Flatpak manifest]]
+- Open a Pull Request with the changes
+- Leverage the Flathub bot for testing
+- Merge the Pull Request
