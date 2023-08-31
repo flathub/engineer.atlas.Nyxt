@@ -3,7 +3,7 @@ runtime: org.gnome.Platform
 runtime-version: '44'
 sdk: org.gnome.Sdk
 rename-icon: nyxt
-# rename-appdata-file: nyxt.metainfo.xml
+rename-appdata-file: nyxt.metainfo.xml
 rename-desktop-file: nyxt.desktop
 command: nyxt
 
@@ -15,11 +15,7 @@ finish-args:
   - --socket=fallback-x11
   - --socket=pulseaudio
   - --socket=cups
-  - --filesystem=xdg-documents
-  - --filesystem=xdg-download
-  - --filesystem=xdg-music
-  - --filesystem=xdg-videos
-  - --filesystem=xdg-pictures
+  - --filesystem=host
   # See http://sbcl.org/getting.html
   - --env=SBCL_HOME=/app/lib/sbcl
 
@@ -72,17 +68,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://github.com/atlas-engineer/nyxt/releases/download/3.6.1/nyxt-3.6.1-source-with-submodules.tar.xz
+        url: https://github.com/atlas-engineer/nyxt/releases/download/3.7.0/nyxt-3.7.0-source-with-submodules.tar.xz
         strip-components: 0
-        sha256: a6b57eeeee3c66710e6bd54f6a4654d0ac843e30735781af9e92b0fe41139719
-      - type: patch
-        path: metainfo-license.patch
-      - type: patch
-        path: cl-gobject-introspection.patch
-      - type: patch
-        path: cl-webkit.patch
-      - type: patch
-        path: cl-plus-ssl.patch
+        sha256: 51c208f7ebab5ada78496bab34d1c9db28165a93e4cb6623178f0c1dc6acad0e
     build-commands:
       - make install DESTDIR=${FLATPAK_DEST} PREFIX=
-      - install -D assets/engineer.atlas.Nyxt.appdata.xml ${FLATPAK_DEST}/share/appdata/engineer.atlas.Nyxt.appdata.xml
