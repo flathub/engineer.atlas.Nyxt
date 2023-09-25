@@ -1,6 +1,6 @@
 app-id: engineer.atlas.Nyxt
 runtime: org.gnome.Platform
-runtime-version: '44'
+runtime-version: '45'
 sdk: org.gnome.Sdk
 rename-icon: nyxt
 rename-appdata-file: nyxt.metainfo.xml
@@ -67,9 +67,18 @@ modules:
   - name: nyxt
     buildsystem: simple
     sources:
+      # Temporary fix, see https://github.com/atlas-engineer/nyxt/pull/3169
+      - type: git
+        url: https://github.com/slime/slime
+        commit: 1e4b7417a1ade842ba4938f66445af68a93176b9
+        dest: new-slime
       - type: archive
-        url: https://github.com/atlas-engineer/nyxt/releases/download/3.7.0/nyxt-3.7.0-source-with-submodules.tar.xz
+        url: https://github.com/atlas-engineer/nyxt/releases/download/3.8.0/nyxt-3.8.0-source-with-submodules.tar.xz
         strip-components: 0
-        sha256: 51c208f7ebab5ada78496bab34d1c9db28165a93e4cb6623178f0c1dc6acad0e
+        sha256: 7f2d11b5258cb32bd3e7c127bbd2a41cf6d6a8b9a6eb0522f011b2652aab1291
+      - type: patch
+        path: fix-start-slynk-swank-commands.patch
     build-commands:
+      - rm -rf _build/slime
+      - mv new-slime _build/slime
       - make install DESTDIR=${FLATPAK_DEST} PREFIX=
