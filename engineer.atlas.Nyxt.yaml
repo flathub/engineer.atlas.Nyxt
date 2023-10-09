@@ -24,8 +24,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: http://prdownloads.sourceforge.net/sbcl/sbcl-2.3.8-x86-64-linux-binary.tar.bz2
-        sha256: 153405265c2bd069a874b0e05ac1d607ff9aaf2a65022df873458dfb95a989cf
+        url: http://prdownloads.sourceforge.net/sbcl/sbcl-2.3.9-x86-64-linux-binary.tar.bz2
+        sha256: d6b267cefe730b65746604ed2f14d8e59cfd2283b498f0ac0953a483e54ed8bf
         only-arches: [x86_64]
     build-commands:
       - INSTALL_ROOT=${FLATPAK_DEST} sh install.sh
@@ -73,9 +73,9 @@ modules:
         commit: 1e4b7417a1ade842ba4938f66445af68a93176b9
         dest: new-slime
       - type: archive
-        url: https://github.com/atlas-engineer/nyxt/releases/download/3.8.0/nyxt-3.8.0-source-with-submodules.tar.xz
+        url: https://github.com/atlas-engineer/nyxt/releases/download/3.9.0/nyxt-3.9.0-source-with-submodules.tar.xz
         strip-components: 0
-        sha256: 7f2d11b5258cb32bd3e7c127bbd2a41cf6d6a8b9a6eb0522f011b2652aab1291
+        sha256: 471f47fe27b4f14bc927ade6458f1e407101de184fcd5060a5678f6fff407d6d
       - type: patch
         path: fix-start-slynk-swank-commands.patch
     build-commands:
