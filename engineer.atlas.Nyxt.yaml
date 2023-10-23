@@ -16,6 +16,9 @@ finish-args:
   - --socket=pulseaudio
   - --socket=cups
   - --filesystem=host
+  # See https://github.com/flathub/flatpak-builder-lint/pull/194
+  # Allow executing commands on the host via flatpak-spawn --host <command>
+  # - --talk-name=org.freedesktop.Flatpak
   # See http://sbcl.org/getting.html
   - --env=SBCL_HOME=/app/lib/sbcl
 
@@ -73,9 +76,9 @@ modules:
         commit: 1e4b7417a1ade842ba4938f66445af68a93176b9
         dest: new-slime
       - type: archive
-        url: https://github.com/atlas-engineer/nyxt/releases/download/3.9.0/nyxt-3.9.0-source-with-submodules.tar.xz
+        url: https://github.com/atlas-engineer/nyxt/releases/download/3.9.1/nyxt-3.9.1-source-with-submodules.tar.xz
         strip-components: 0
-        sha256: 471f47fe27b4f14bc927ade6458f1e407101de184fcd5060a5678f6fff407d6d
+        sha256: 882a2640533ed3ee62f3df4905eca5f9b72cb6fed1b962b80d4620524f1273f7
       - type: patch
         path: fix-start-slynk-swank-commands.patch
     build-commands:
