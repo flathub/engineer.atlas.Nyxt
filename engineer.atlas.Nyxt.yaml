@@ -16,9 +16,8 @@ finish-args:
   - --socket=pulseaudio
   - --socket=cups
   - --filesystem=host
-  # See https://github.com/flathub/flatpak-builder-lint/pull/194
-  # Allow executing commands on the host via flatpak-spawn --host <command>
-  # - --talk-name=org.freedesktop.Flatpak
+  # Allow invoking host commands via flatpak-spawn --host <command> <command-args>
+  - --talk-name=org.freedesktop.Flatpak
   # See http://sbcl.org/getting.html
   - --env=SBCL_HOME=/app/lib/sbcl
 
