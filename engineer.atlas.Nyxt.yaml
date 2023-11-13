@@ -70,18 +70,9 @@ modules:
   - name: nyxt
     buildsystem: simple
     sources:
-      # Temporary fix, see https://github.com/atlas-engineer/nyxt/pull/3169
-      - type: git
-        url: https://github.com/slime/slime
-        commit: 1e4b7417a1ade842ba4938f66445af68a93176b9
-        dest: new-slime
       - type: archive
         url: https://github.com/atlas-engineer/nyxt/releases/download/3.9.1/nyxt-3.9.1-source-with-submodules.tar.xz
         strip-components: 0
         sha256: 882a2640533ed3ee62f3df4905eca5f9b72cb6fed1b962b80d4620524f1273f7
-      - type: patch
-        path: fix-start-slynk-swank-commands.patch
     build-commands:
-      - rm -rf _build/slime
-      - mv new-slime _build/slime
       - make install DESTDIR=${FLATPAK_DEST} PREFIX=
