@@ -26,8 +26,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: http://prdownloads.sourceforge.net/sbcl/sbcl-2.4.0-x86-64-linux-binary.tar.bz2
-        sha256: 50afb9765d6a2f937f609ac33ebe553326347aef23eddd49c46d76456a5b3095
+        url: http://prdownloads.sourceforge.net/sbcl/sbcl-2.4.1-x86-64-linux-binary.tar.bz2
+        sha256: 9ccf12f17f57923ede10f370756ab868ae949d435217854167e3dbbfb44cec53
         only-arches: [x86_64]
     build-commands:
       - INSTALL_ROOT=${FLATPAK_DEST} sh install.sh
