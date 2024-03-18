@@ -26,8 +26,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: http://prdownloads.sourceforge.net/sbcl/sbcl-2.4.1-x86-64-linux-binary.tar.bz2
-        sha256: 9ccf12f17f57923ede10f370756ab868ae949d435217854167e3dbbfb44cec53
+        url: http://prdownloads.sourceforge.net/sbcl/sbcl-2.4.2-x86-64-linux-binary.tar.bz2
+        sha256: 720ad87604359920d268630f2d87b6fca1ba760f961b8fe4a1337f40628cbfdd
         only-arches: [x86_64]
     build-commands:
       - INSTALL_ROOT=${FLATPAK_DEST} sh install.sh
@@ -70,8 +70,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://github.com/atlas-engineer/nyxt/releases/download/3.11.4/nyxt-3.11.4-source-with-submodules.tar.xz
+        url: https://github.com/atlas-engineer/nyxt/releases/download/3.11.5/nyxt-3.11.5-source-with-submodules.tar.xz
         strip-components: 0
-        sha256: eb608936e68df25bff1d7d822204d79a9235fa104dffa00648de23c6c46db845
+        sha256: bab4045a30fed60bd3b5efa8e5980de7c4e39b097da19a28e4e2aa7dc33f2ec5
     build-commands:
       - make install DESTDIR=${FLATPAK_DEST} PREFIX=
