@@ -70,8 +70,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://github.com/atlas-engineer/nyxt/releases/download/3.11.7/nyxt-3.11.7-source-with-submodules.tar.xz
+        url: https://github.com/atlas-engineer/nyxt/releases/download/3.11.8/nyxt-3.11.8-source-with-submodules.tar.xz
         strip-components: 0
-        sha256: 27d11de1e41ca1c319193678f385a5a3e0bfb805da8f687557a77cba24ab01e1
+        sha256: 4604b15a4d89336d110926ac91c53eff020ae9c8cd96214d7ed1114bcf6a9254
     build-commands:
       - make install DESTDIR=${FLATPAK_DEST} PREFIX=
