@@ -74,4 +74,5 @@ modules:
         strip-components: 0
         sha256: 9355f6f0cc26505130b8e016b1d8457fe06e984aa1bcd516dae250445bc9a554
     build-commands:
+      - sed -i "s|(glib:g-set-prgname \"nyxt\")|(glib:g-set-prgname \"engineer.atlas.Nyxt\")|" source/renderer/gi-gtk.lisp
       - make install DESTDIR=${FLATPAK_DEST} PREFIX=
