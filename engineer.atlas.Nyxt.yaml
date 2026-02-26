@@ -44,6 +44,7 @@ modules:
       - type: git
         url: https://github.com/kfish/xsel.git
         tag: 1.2.1
+        commit: 8c89a9225ea898b67c5a067d1a7f8e78f0a458aa
 
   - name: wl-clipboard
     buildsystem: meson
@@ -54,6 +55,7 @@ modules:
       - type: git
         url: https://github.com/bugaevc/wl-clipboard.git
         tag: v2.2.1
+        commit: 3eb912c274042cd5deed6b478b39908a12f37498
 
   - name: libfixposix
     buildsystem: autotools
@@ -61,6 +63,7 @@ modules:
       - type: git
         url: https://github.com/sionescu/libfixposix.git
         tag: v0.5.1
+        commit: 66bda012a7afb232877e315c91e21d6ddaffbdab
       - type: script
         dest-filename: autogen.sh
         commands:
