@@ -21,6 +21,13 @@ finish-args:
   # See http://sbcl.org/getting.html
   - --env=SBCL_HOME=/app/lib/sbcl
 
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /share/doc
+  - /share/man
+  - '*.la'
+
 modules:
   - name: sbcl
     buildsystem: simple
@@ -58,12 +65,6 @@ modules:
         dest-filename: autogen.sh
         commands:
           - autoreconf -fi
-    cleanup:
-      - /lib/pkgconfig
-      - /include
-      - '*.h'
-      - '*.pc'
-      - '*.la'
 
   - name: nyxt
     buildsystem: simple
