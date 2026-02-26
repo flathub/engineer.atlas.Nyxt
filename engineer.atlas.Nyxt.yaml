@@ -1,6 +1,6 @@
 app-id: engineer.atlas.Nyxt
 runtime: org.gnome.Platform
-runtime-version: '46'
+runtime-version: '49'
 sdk: org.gnome.Sdk
 rename-icon: nyxt
 rename-appdata-file: nyxt.metainfo.xml
@@ -28,7 +28,6 @@ modules:
       - type: archive
         url: http://prdownloads.sourceforge.net/sbcl/sbcl-2.4.7-x86-64-linux-binary.tar.bz2
         sha256: 1f900cf99f2617f613fe0a6d3490d3e00aa5e9740c88a8c88022a0ac766b0457
-        only-arches: [x86_64]
     build-commands:
       - INSTALL_ROOT=${FLATPAK_DEST} sh install.sh
 
