@@ -1,25 +1,29 @@
 app-id: engineer.atlas.Nyxt
-runtime: org.gnome.Platform
-runtime-version: '49'
-sdk: org.gnome.Sdk
-rename-icon: nyxt
-rename-appdata-file: nyxt.metainfo.xml
-rename-desktop-file: nyxt.desktop
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+sdk: org.freedesktop.Sdk
 command: nyxt
+separate-locales: false
+
+build-options:
+  strip: false
+  no-debuginfo: true
 
 finish-args:
   - --device=dri
   - --share=network
   - --share=ipc
   - --socket=wayland
-  - --socket=fallback-x11
+  - --socket=x11
   - --socket=pulseaudio
   - --socket=cups
   - --filesystem=host
-  # Allow invoking host commands via flatpak-spawn --host <command> <command-args>
+  - --filesystem=xdg-run/pipewire-0:ro
   - --talk-name=org.freedesktop.Flatpak
-  # See http://sbcl.org/getting.html
+  - --system-talk-name=org.freedesktop.GeoClue2
   - --env=SBCL_HOME=/app/lib/sbcl
+  - --env=CL_CEF_LIBRARY=/app/lib/cef/libcl-cef.so
+  - --env=CL_CLIPBOARD_LIBRARY=/app/lib/libcl-clipboard.so
 
 cleanup:
   - /include
@@ -33,32 +37,15 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: http://prdownloads.sourceforge.net/sbcl/sbcl-2.4.7-x86-64-linux-binary.tar.bz2
-        sha256: 1f900cf99f2617f613fe0a6d3490d3e00aa5e9740c88a8c88022a0ac766b0457
+        url: https://downloads.sourceforge.net/project/sbcl/sbcl/2.6.10/sbcl-2.6.10-x86-64-linux-binary.tar.bz2
+        sha256: 96e26b0be3aa6ca2a3f03dfd5fc117647fffb96790a9c235e8dcf27df2eba726
     build-commands:
       - INSTALL_ROOT=${FLATPAK_DEST} sh install.sh
 
-  - name: xsel
-    buildsystem: autotools
-    sources:
-      - type: git
-        url: https://github.com/kfish/xsel.git
-        tag: 1.2.1
-        commit: 8c89a9225ea898b67c5a067d1a7f8e78f0a458aa
-
-  - name: wl-clipboard
-    buildsystem: meson
-    config-opts:
-      - -Dzshcompletiondir=no
-      - -Dfishcompletiondir=no
-    sources:
-      - type: git
-        url: https://github.com/bugaevc/wl-clipboard.git
-        tag: v2.2.1
-        commit: 3eb912c274042cd5deed6b478b39908a12f37498
-
   - name: libfixposix
     buildsystem: autotools
+    config-opts:
+      - --libdir=/app/lib
     sources:
       - type: git
         url: https://github.com/sionescu/libfixposix.git
@@ -69,13 +56,47 @@ modules:
         commands:
           - autoreconf -fi
 
-  - name: nyxt
+  - name: enchant
+    buildsystem: autotools
+    config-opts:
+      - --libdir=/app/lib
+      - --disable-static
+    sources:
+      - type: archive
+        url: https://github.com/AbiWord/enchant/releases/download/v2.8.2/enchant-2.8.2.tar.gz
+        sha256: 8f19535adb5577b83b00e02f330fe9b9eb40dd21f19e2899636fc4d3a7696375
+
+  - name: ocicl
     buildsystem: simple
     sources:
       - type: archive
-        url: https://github.com/atlas-engineer/nyxt/releases/download/3.12.0/nyxt-3.12.0-source-with-submodules.tar.xz
+        url: https://github.com/ocicl/ocicl/releases/download/v2.21.0/ocicl-2.21.0-linux-amd64.tar.gz
+        sha256: a395043d1fe9cdb946a9434340b5965889ad7c8f99e42ce2cebc32038cf692e5
         strip-components: 0
-        sha256: 9355f6f0cc26505130b8e016b1d8457fe06e984aa1bcd516dae250445bc9a554
     build-commands:
-      - sed -i "s|(glib:g-set-prgname \"nyxt\")|(glib:g-set-prgname \"engineer.atlas.Nyxt\")|" source/renderer/gi-gtk.lisp
-      - make install DESTDIR=${FLATPAK_DEST} PREFIX=
+      - install -Dm755 ocicl /app/bin/ocicl
+
+  - name: nyxt
+    buildsystem: simple
+    build-options:
+      strip: false
+      no-debuginfo: true
+    sources:
+      - type: git
+        url: https://github.com/atlas-engineer/nyxt.git
+        tag: "5.1.0"
+        commit: 02d338bdcdcf71bb14f80da32ca5b46d271a5e96
+      - type: patch
+        path: nyxt-5.1.0-metainfo.patch
+      - type: archive
+        strip-components: 0
+        url: https://github.com/atlas-engineer/nyxt/releases/download/5.1.0/nyxt-5.1.0-ocicl.tar.gz
+        sha256: af8ce4e52b6245131bde888ece803824dedfe0e58f45fe39f1bbe4d290ef7bab
+      - type: archive
+        dest: cef-sdk
+        url: https://github.com/atlas-engineer/cef/releases/download/150.0.22%2Bgc1a097e%2Bchromium-150.0.7871.256/cef_binary_150.0.22%2Bgc1a097e%2Bchromium-150.0.7871.256_linux64_minimal.tar.bz2
+        sha256: d63964452b43b1272c6a3a2884e1b6626894662b8a10dab76304bd9fe6d1dea8
+      - type: file
+        path: flatpak-build.sh
+    build-commands:
+      - sh flatpak-build.sh
