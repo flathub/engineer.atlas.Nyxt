@@ -22,6 +22,7 @@ if [ ! -f ocicl/cl-cef-ff7b41f/cl-cef.asd ]; then
 fi
 tab=$(printf '\t')
 sed -i "s|^${tab}cd \$(makefile_dir) && CL_SOURCE_REGISTRY= \$(OCICL) -c never install|${tab}true|" makefile
+sed -i 's/^CFLAGS ?=/CFLAGS +=/' ocicl/cl-clipboard-e52a716/makefile
 
 cef_root="${PWD}/cef-sdk"
 if [ ! -d "${cef_root}/include" ] || [ ! -d "${cef_root}/Release" ]; then
