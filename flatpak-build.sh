@@ -29,6 +29,12 @@ if [ ! -d "${cef_root}/include" ] || [ ! -d "${cef_root}/Release" ]; then
     exit 1
 fi
 
+strip_fortify() {
+    printf '%s' "$1" | sed -e 's/-Wp,-D_FORTIFY_SOURCE=[0-9]//g' -e 's/-D_FORTIFY_SOURCE=[0-9]//g'
+}
+export CFLAGS="$(strip_fortify "${CFLAGS:-}")"
+export CXXFLAGS="$(strip_fortify "${CXXFLAGS:-}")"
+
 make NYXT_RENDERER=cef CEF_ROOT="${cef_root}" nyxt
 
 app_id=engineer.atlas.Nyxt
