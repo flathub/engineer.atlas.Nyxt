@@ -86,12 +86,6 @@ modules:
     build-options:
       strip: false
       no-debuginfo: true
-      # ocicl install downloads the systems pinned in ocicl.csv.
-      build-args:
-        - --share=network
-      env:
-        OCICL_HTTP_RETRIES: "6"
-        OCICL_DOWNLOAD_CONCURRENCY: "2"
     sources:
       - type: git
         url: https://github.com/atlas-engineer/nyxt.git
@@ -99,6 +93,10 @@ modules:
         commit: 02d338bdcdcf71bb14f80da32ca5b46d271a5e96
       - type: patch
         path: nyxt-5.1.0-metainfo.patch
+      - type: archive
+        strip-components: 0
+        url: https://github.com/atlas-engineer/nyxt/releases/download/5.1.0/nyxt-5.1.0-ocicl.tar.gz
+        sha256: af8ce4e52b6245131bde888ece803824dedfe0e58f45fe39f1bbe4d290ef7bab
       - type: archive
         dest: cef-sdk
         url: https://github.com/atlas-engineer/cef/releases/download/150.0.22%2Bgc1a097e%2Bchromium-150.0.7871.256/cef_binary_150.0.22%2Bgc1a097e%2Bchromium-150.0.7871.256_linux64_minimal.tar.bz2

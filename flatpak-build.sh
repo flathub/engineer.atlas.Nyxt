@@ -16,6 +16,13 @@ if [ -z "$runtime" ] || [ ! -f "$runtime" ]; then
 fi
 export OCICL_RUNTIME="$runtime"
 
+if [ ! -f ocicl/cl-cef-ff7b41f/cl-cef.asd ]; then
+    printf '%s\n' "Vendored ocicl systems are missing" >&2
+    exit 1
+fi
+tab=$(printf '\t')
+sed -i "s|^${tab}cd \$(makefile_dir) && CL_SOURCE_REGISTRY= \$(OCICL) -c never install|${tab}true|" makefile
+
 cef_root="${PWD}/cef-sdk"
 if [ ! -d "${cef_root}/include" ] || [ ! -d "${cef_root}/Release" ]; then
     printf '%s\n' "CEF SDK is missing from ${cef_root}" >&2
