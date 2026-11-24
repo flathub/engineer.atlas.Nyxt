@@ -1,0 +1,15 @@
+--- a/assets/nyxt.metainfo.xml
++++ b/assets/nyxt.metainfo.xml
+@@ -53,6 +53,12 @@
+ </screenshots>
+   <!-- Only those published on Flathub are listed -->
+   <releases>
++    <release version="5.1.0" date="2026-11-23">
++      <url>https://nyxt-browser.com/article/release-5.1.0.org</url>
++    </release>
++    <release version="5.0.0" date="2026-11-15">
++      <url>https://nyxt-browser.com/article/release-5.0.0.org</url>
++    </release>
+     <release version="3.11.8" date="2024-08-01">
+       <url>https://nyxt-browser.com/article/release-3.11.8.org</url>
+     </release>
