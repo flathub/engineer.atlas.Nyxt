@@ -19,12 +19,8 @@ finish-args:
   - --socket=cups
   - --filesystem=host
   - --filesystem=xdg-download
-  - --filesystem=xdg-run/pipewire-0
+  - --filesystem=xdg-run/pipewire-0:ro
   - --talk-name=org.freedesktop.Flatpak
-  - --talk-name=org.freedesktop.Notifications
-  - --talk-name=org.freedesktop.FileManager1
-  - --talk-name=org.freedesktop.ScreenSaver
-  - --talk-name=org.freedesktop.secrets
   - --system-talk-name=org.freedesktop.GeoClue2
   - --env=SBCL_HOME=/app/lib/sbcl
   - --env=CL_CEF_LIBRARY=/app/lib/cef/libcl-cef.so
