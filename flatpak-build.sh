@@ -23,6 +23,7 @@ fi
 tab=$(printf '\t')
 sed -i "s|^${tab}cd \$(makefile_dir) && CL_SOURCE_REGISTRY= \$(OCICL) -c never install|${tab}true|" makefile
 sed -i 's/^CFLAGS ?=/CFLAGS +=/' ocicl/cl-clipboard-e52a716/makefile
+sed -i '/COPY_FILES("cl-cef-helper"/d' ocicl/cl-cef-ff7b41f/CMakeLists.txt
 
 cef_root="${PWD}/cef-sdk"
 if [ ! -d "${cef_root}/include" ] || [ ! -d "${cef_root}/Release" ]; then
