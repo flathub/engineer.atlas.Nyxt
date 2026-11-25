@@ -18,9 +18,7 @@ finish-args:
   - --socket=pulseaudio
   - --socket=cups
   - --filesystem=host
-  - --filesystem=xdg-run/pipewire-0:ro
   - --talk-name=org.freedesktop.Flatpak
-  - --system-talk-name=org.freedesktop.GeoClue2
   - --env=SBCL_HOME=/app/lib/sbcl
   - --env=CL_CEF_LIBRARY=/app/lib/cef/libcl-cef.so
   - --env=CL_CLIPBOARD_LIBRARY=/app/lib/libcl-clipboard.so
